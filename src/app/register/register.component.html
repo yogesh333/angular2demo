@@ -1,0 +1,75 @@
+
+
+<form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm.value,myForm.valid)">
+
+
+    
+     <div>
+    <label>First name</label>
+    <input type="text" formControlName="firstname">
+    <small [hidden]="myForm.controls.firstname.valid || (myForm.controls.firstname.pristine && !submitted)">
+  
+  Name is required (minimum 5 characters).
+  </small>
+</div>
+<br>
+ <div>
+    <label>Last name</label>
+    <input type="text" formControlName="lastname">
+    <small [hidden]="myForm.controls.lastname.valid || (myForm.controls.lastname.pristine && !submitted)">
+  
+  Name is required (minimum 5 characters).
+  </small>
+</div>
+<br>
+ <div>
+    <label>Designation</label>
+    <input type="text" formControlName="designation">
+    <small [hidden]="myForm.controls.designation.valid || (myForm.controls.designation.pristine && !submitted)">
+  
+  Name is required (minimum 5 characters).
+  </small>
+</div>
+<br>
+
+<div>
+<label>Address</label>
+<input type="text" formControlName="address">
+<small [hidden]="myForm.controls.address.valid ||
+(myForm.controls.address.pristine && !submitted)"></small>
+
+
+
+
+</div>
+
+<!--<div formGroupName="address">
+    <label>Address</label>
+    <input type="text" formControlName="street">
+    <small [hidden]="myForm.controls.address.controls.street.valid || (myForm.controls.address.controls.street.pristine && !submitted)">
+        street required
+        </small> 
+
+</div>
+<div formGroupName="address">
+    <label>PostCode</label>
+    <input type="text" formControlName="postcode">
+    </div>-->
+<button type="submit">Submit</button>
+
+    <div class="margin-20">
+      <div>myForm details:-</div>
+      <pre>Is myForm valid?: <br>{{myForm.valid | json}}</pre>
+      <pre>Is myForm submitted?: <br>{{submitted | json}}</pre>
+      <pre>myForm value: <br>{{myForm.value | json}}</pre>
+    </div>
+
+  <div class="margin-20">
+       Form changes:
+    </div>
+
+<div *ngFor="let event of events" class="margin-20">
+<pre>{{ event|json }}</pre>
+</div>
+
+ </form>
