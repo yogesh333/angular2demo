@@ -3,7 +3,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-
+import * as Rx from "rxjs/Rx";
+import 'rxjs/add/operator/publish';
 
 
 import {User} from './user.interface';
@@ -17,6 +18,8 @@ constructor(public _http:Http)
 {
 this.http=_http;
 }
+
+
 addEmployee(user:User){
  return this.http.post(this.post_Url,user,{}).map(res=>res.json());
 
@@ -49,8 +52,12 @@ return Observable.throw(errMsg);
 }
 
 
+   deleteEmployee(id:Number):Rx.Observable<Response>
+{
 
+return this.http.delete(`http://localhost:8080/angular2Spring/api/employee/${id}`).publish().refCount();
 
+}
 
 }
 
